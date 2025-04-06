@@ -6,6 +6,7 @@ import helmet from 'helmet'
 import cors from 'cors' 
 
 import { limiter } from '../middlewares/rate.limit.js'
+import authRoutes from '../src/auth/auth.routes.js'
 
 const configs = (app)=>{
     app.use(express.json())
@@ -17,14 +18,13 @@ const configs = (app)=>{
 }
 
 const routes = (app)=>{
-
+    app.use('/v1/auth', authRoutes)
 }
 
 export const initServer = async()=> {
     const app = express()
 
     try{
-        await createDefaultAdmin()
         configs(app)
         routes(app)
         app.listen(process.env.PORT)
