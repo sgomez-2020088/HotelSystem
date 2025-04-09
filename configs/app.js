@@ -7,11 +7,10 @@ import cors from 'cors'
 
 import { limiter } from '../middlewares/rate.limit.js'
 import authRoutes from '../src/auth/auth.routes.js'
-<<<<<<< HEAD
 import hotelRoutes from '../src/hotel/hotel.routes.js'
-=======
+
 import eventsRoutes from '../src/events/events.routes.js'
->>>>>>> d6aa4529df5b14a473680cc6e67d94e3355ee65c
+
 
 const configs = (app)=>{
     app.use(express.json())
@@ -24,11 +23,8 @@ const configs = (app)=>{
 
 const routes = (app)=>{
     app.use('/v1/auth', authRoutes)
-<<<<<<< HEAD
     app.use('/v1/hotel', hotelRoutes)
-=======
     app.use('/v1/events', eventsRoutes)
->>>>>>> d6aa4529df5b14a473680cc6e67d94e3355ee65c
 }
 
 export const initServer = async()=> {
