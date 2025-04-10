@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import { checkPassword, encrypt } from "../../utils/encrypt"
 import User from "./user.model"
 
 export const getAll = async(req, res)=>{
@@ -9,59 +9,26 @@ export const getAll = async(req, res)=>{
             .limit(limit)
 
         if(users.length === 0) return res.status(404).send({ message: 'Users not found', success: false })
-        return res.send(
-            {
-                success: true,
-                message: 'Users found',
-                users,
-                total: users.length
-            }
-        )
+        return res.send({success: true, message: 'Users found', users, total: users.length})
     }catch(err){
         console.error(err)
-        return res.status(500).send(
-            {
-                success: false,
-                message: 'General error', 
-                err
-            }
+        return res.status(500).send({success: false, message: 'General error', err}
         )
     }
 }
 
 export const updateUser = async(req, res) =>{
     try {
-        const { id } = req.params
-        if(!mongoose.Types.ObjectId.isValid(id)){
-            return res.status(400).send(
-                {
-                    success: false,
-                    message: 'Invalida user ID'
-                }
-            )
-        }
+        const { id } = req.body
 
         const { name, surname, username, email, phone, role } = req.body
-        const requestingUser = req.user
         const userToUpdate = await User.findById(id)
 
         if(!userToUpdate){
-            return res.status(404).send(
-                {
-                    success: false,
-                    message: 'User not found'
-                }
-            )
-        }
+            return res.status(404).send({success: false,message: 'User not found'})}
 
         if(userToUpdate.role === 'ADMIN' && role === 'CLIENT') {
-            return res.status(403).send(
-                {
-                    success: false,
-                    message: 'You cannot downgade an ADMIN to CLIENT'
-                }
-            )
-        }
+            return res.status(403).send({success: false,message: 'You cannot downgade an ADMIN to CLIENT'})}
 
         const updateUser = await User.findByIdAndUpdate(
             id,
@@ -69,125 +36,56 @@ export const updateUser = async(req, res) =>{
             { new: true }
         )
 
-        return res.send(
-            {
-                success: true,
-                message: 'User updated',
-                updateUser
-            }
-        )
+        return res.send({success: true,message: 'User updated',updateUser})
 
     } catch(err){
         console.error(err)
-        return res.status(500).send(
-            {
-                success: false,
-                message: 'General error', 
-                err
-            }
-        )
+        return res.status(500).send({success: false,message: 'General error', err})
     }
 }
 
 export const updatePassword = async(req, res) => {
     try {
-        const { id } = req.params
-        const { currentPasswod, newPassword } = req.body
+        const { id, currentPassword, newPassword } = req.body
 
-        if(!id || !currentPasswod || !newPassword){
-            return res.status(400).send(
-                {
-                    success: false,
-                    message: 'All fields are required: id, currentPassword, newPassword'
-                }
-            )
-        }
+        if(!id || !currentPassword || !newPassword){
+            return res.status(400).send({success: false,message: 'All fields are required: id, currentPassword, newPassword'})}
 
         const user = await User.findById(id)
         if (!user){
-            return res.status(404).send(
-                {
-                    success: false,
-                    message: 'User not found'
-                }
-            )
-        }
+            return res.status(404).send({success: false,message: 'User not found'})}
 
-        const isMatch = await argon2.verify(user.password, currentPasswod)
+        const isMatch = await checkPassword(user.password, currentPassword)
         if (!isMatch){
-            return res.status(400).send(
-                {
-                    success: false,
-                    message:  'Current password is incorrect'
-                }
-            )
-        }
+            return res.status(400).send({success: false, message:  'Current password is incorrect'})}
 
-        const hashedPassword = await argon2.hash(newPassword)
+        const hashedPassword = await encrypt(newPassword)
 
         user.password = hashedPassword
         await user.save()
 
-        return res.send(
-            {
-                success: true,
-                message: 'Password updated succesfully'
-            }
-        )
+        return res.send({success: true, message: 'Password updated succesfully'})
 
-    }catch(err){
+    } catch(err){
         console.error(err)
-        return res.status(500).send(
-            {
-                success: false,
-                message: 'General error', 
-                err
-            }
-        )
+        return res.status(500).send({success: false,message: 'General error', err})
     }
 }
 
 export const deleteOne = async(req, res) =>{
     try {
-        const userId = req.params.id
+        const userId = req.body.id
 
-        if(!mongoose.Types.ObjectId.isValid(userId)) {
-            return res.status(400).send(
-                {
-                    success: false,
-                    message: 'Invalid user ID'
-                }
-            )
-        }
-
-        const user = await User.findById(userId)
-        if(!user){
-            return res.status(404).send(
-                {
-                    success: false,
-                    message: 'User not found'
-                }
-            )
-        }
+        const user = await User.findByIdAndUpdate(userId, { status: false }, { new: true })
+        if(!user){return res.status(404).send({success: false,message: 'User not found'})}
 
         user.status = false
         await user.save()
 
-        return res.send(
-            {
-                success: true,
-                message: 'User desactived'
-            }
-        )
+        return res.send({success: true,message: 'User desactived'})
             
-    } catch (err) {
+    } catch(err){
         console.error(err)
-        return res.status(500).send(
-            {
-                success: false,
-                message: "General error",
-                err
-            }
-        )
+        return res.status(500).send({success: false,message: 'General error', err})
     }
 }
