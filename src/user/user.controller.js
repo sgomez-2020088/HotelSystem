@@ -17,6 +17,21 @@ export const getAll = async(req, res)=>{
     }
 }
 
+export const getOne = async(req, res)=>{
+    try {
+        const { id } = req.body
+        const user = await User.findById(id)
+ 
+        if(!user) return res.status(404).send({success: false, message: 'User not found'})
+        return res.send({success: true, message: 'User found', user})
+ 
+    }catch(err){
+        console.error(err)
+        return res.status(500).send({success: false, message: 'General error', err}
+        )
+    }
+}
+
 export const updateUser = async(req, res) =>{
     try {
         const { id } = req.body
