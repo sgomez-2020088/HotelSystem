@@ -23,9 +23,5 @@ const hotelSchema = Schema({
     }
 }, {timestamps: true})
 
-userSchema.methos.toJSON = function(){
-    const {__v, _id, ...hotel} = this.toObject()
-    return hotel
-}
 
 export default model('Hotel', hotelSchema)
