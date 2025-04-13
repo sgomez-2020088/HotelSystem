@@ -300,6 +300,156 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "hotel room",
+			"item": [
+				{
+					"name": "ADD HOTEL ROOM",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "number",
+									"value": "A213",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "double",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "240",
+									"description": "Per Nigth",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "No description",
+									"type": "text"
+								},
+								{
+									"key": "imagen",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "hotel",
+									"value": "67fb062d87695f0adf6c2530",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/hotelRoom/add",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"hotelRoom",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL HOTELS ROOM",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "userInformation",
+									"value": "jsjsjs@gmail.co",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/hotelRoom/getAll",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"hotelRoom",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ONE HOTEL ROOM",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "67fb0ffd1a069f0669c26448",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/hotelRoom/getOne",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"hotelRoom",
+								"getOne"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
