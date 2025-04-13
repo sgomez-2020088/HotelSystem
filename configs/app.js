@@ -9,7 +9,7 @@ import { limiter } from '../middlewares/rate.limit.js'
 import authRoutes from '../src/auth/auth.routes.js'
 import hotelRoutes from '../src/hotel/hotel.routes.js'
 import userRoutes from '../src/user/user.routes.js'
-
+import hotelRoomRoutes from '../src/hotelRoom/hotelRoom.routes.js'
 import eventsRoutes from '../src/events/events.routes.js'
 import reservatrionRoutes from '../src/reservation/reservation.routes.js'
 
@@ -25,6 +25,7 @@ const configs = (app)=>{
 const routes = (app)=>{
     app.use('/v1/auth', authRoutes)
     app.use('/v1/hotel', hotelRoutes)
+    app.use('/v1/hotelRoom', hotelRoomRoutes)
     app.use('/v1/events', eventsRoutes)
     app.use('/v1/user', userRoutes)
     app.use('/v1/reservation', reservatrionRoutes)
