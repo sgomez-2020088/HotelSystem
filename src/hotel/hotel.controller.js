@@ -37,14 +37,21 @@ export const getHotelById = async (req, res) => {
     }
 }
 
-export const updateHotel = async (req, res) =>{
+export const updateHotel = async (req, res) => {
     try {
+        const hotelId = req.body.id  
+        const data = req.body 
+
+        const updatedHotel = await Hotel.findByIdAndUpdate(hotelId, data, { new: true })  
+        if (!updatedHotel) return res.status(404).send({ message: 'Hotel not found', success: false })
         
+        return res.send({ message: 'Hotel updated successfully', hotel: updatedHotel, success: true })
     } catch (err) {
         console.error(err)
-        return res.status(500).send({message: 'General error', err, success: false})
+        return res.status(500).send({ message: 'General error', success: false })
     }
 }
+
 
 export const deleteHotel = async (req, res) => {
     try {
