@@ -33,7 +33,12 @@ const reservationSchema = Schema(
             type: Number,
             default: 0,
             required: [true, 'Total is required']
-        }
+        },
+        status:{
+            type: String,
+            enum: ['confirmed', 'completed', 'canceled'],
+            default: 'confirmed'
+        },
     }
 )
 
