@@ -1,5 +1,5 @@
-import { checkPassword, encrypt } from "../../utils/encrypt"
-import User from "./user.model"
+import { checkPassword, encrypt } from "../../utils/encrypt.js"
+import User from "./user.model.js"
 
 export const getAll = async(req, res)=>{
     try {
