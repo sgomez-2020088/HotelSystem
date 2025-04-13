@@ -36,7 +36,8 @@ export const login = async(req,res) =>{
             let loggedUser = {
                 uid: user._id,
                 username: user.username,
-                role: user.role
+                role: user.role,
+                status: user.status
             }
             let token = await generateJwt(loggedUser)
             return res.send({success: true, message:`Welcome ${user.name}`,loggedUser, token})
