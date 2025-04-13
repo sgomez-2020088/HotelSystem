@@ -11,7 +11,7 @@ import hotelRoutes from '../src/hotel/hotel.routes.js'
 import userRoutes from '../src/user/user.routes.js'
 
 import eventsRoutes from '../src/events/events.routes.js'
-
+import reservatrionRoutes from '../src/reservation/reservation.routes.js'
 
 const configs = (app)=>{
     app.use(express.json())
@@ -27,6 +27,7 @@ const routes = (app)=>{
     app.use('/v1/hotel', hotelRoutes)
     app.use('/v1/events', eventsRoutes)
     app.use('/v1/user', userRoutes)
+    app.use('/v1/reservation', reservatrionRoutes)
 }
 
 export const initServer = async()=> {
