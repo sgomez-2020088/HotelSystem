@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deleteOne, getAll, getOne, updatePassword, updateUser } from "./user.controller";
+import { deleteOne, getAll, getOne, updatePassword, updateUser } from "./user.controller.js";
 import { validateJwt } from '../../middlewares/validate.jwt.js'
  
 const api = Router()
