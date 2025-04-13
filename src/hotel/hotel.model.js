@@ -4,7 +4,8 @@ const hotelSchema = Schema({
     name:{
         type: String,
         required: [true, 'Name is required'],
-        maxLength: [25, 'Can´t be overcome 25 characters']
+        unique: true,
+        maxLength: [25, 'Can´t be overcome 25 characters'],
     },
     address:{
         type: String,
