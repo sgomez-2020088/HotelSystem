@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { addHotel, getAllHotels, getHotelById, updateHotel, deleteHotel } from "./hotel.controller.js"
-import { validateJwt} from '../../middlewares/validateJwt.js'
+import { validateJwt} from '../../middlewares/validate.jwt.js'
 
 const api = Router()
 
