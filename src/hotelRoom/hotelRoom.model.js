@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 const hotelRoomSchema = Schema(
     {
@@ -29,3 +29,5 @@ const hotelRoomSchema = Schema(
         },
     }
 )
+
+export default model('HotelRoom', hotelRoomSchema)
