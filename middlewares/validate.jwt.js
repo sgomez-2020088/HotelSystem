@@ -6,7 +6,9 @@ export const validateJwt = async(req, res, next) =>{
     try {
         let secretKey = process.env.SECRET_KEY
         let { authorization } = req.headers
-        if(!authorization) return res.status(401).send({success: false, message: 'You must be logged in'})
+        if(!authorization) return res.status(401).send({success: false, message: 'Unauthorizated'})
+        if(authorization.status == 'false') {
+            return res.status(404).send({ succes: false, message: 'user not found'})}
         let user = jwt.verify(authorization,secretKey)
         req.user = user
         next()
