@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "6f0f0d46-853c-441b-8928-bbbe897fd442",
+		"_postman_id": "88ac5474-3f83-4440-98e5-90a5424e9685",
 		"name": "HOTELSYSTEM",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37951898"
+		"_exporter_id": "37951897"
 	},
 	"item": [
 		{
@@ -19,32 +19,32 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "Dilan Andre",
+									"value": "Sergio",
 									"type": "text"
 								},
 								{
 									"key": "surname",
-									"value": "Rodas Aldaba",
+									"value": "Gomez",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "jsjsjs@gmail.com",
+									"value": "sgomez@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "dilis",
+									"value": "sgomez",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "12345678D",
+									"value": "123.sd/",
 									"type": "text"
 								},
 								{
 									"key": "phone",
-									"value": "33442101",
+									"value": "44396911",
 									"type": "text"
 								}
 							]
@@ -66,9 +66,122 @@
 				},
 				{
 					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody)\r",
+									"postman.setGlobalVariable(\"token\",data.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "123.sd/",
+									"type": "text"
+								},
+								{
+									"key": "userInformation",
+									"value": "sgomez@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "hotel",
+			"item": [
+				{
+					"name": "ADD HOTEL",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Hilton",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Carretera a el salvador",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "No",
+									"type": "text"
+								},
+								{
+									"key": "amenities",
+									"value": "No",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/hotel/add",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"hotel",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL HOTELS",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "urlencoded",
 							"urlencoded": [
@@ -85,15 +198,102 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:3640/v1/auth/login",
+							"raw": "localhost:3640/v1/hotel/getAll",
 							"host": [
 								"localhost"
 							],
 							"port": "3640",
 							"path": [
 								"v1",
-								"auth",
-								"login"
+								"hotel",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ONE HOTELS",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "67fb062d87695f0adf6c2530",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "jsjsjs@gmail.co",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/hotel/getOne",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"hotel",
+								"getOne"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE HOTEL",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "67fb062d87695f0adf6c2530",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "jsjsjs@gmail.co",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/hotel/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"hotel",
+								"update"
 							]
 						}
 					},
