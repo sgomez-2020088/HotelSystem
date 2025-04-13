@@ -27,6 +27,13 @@ const hotelRoomSchema = Schema(
             ref: 'Hotel',
             required: [true, 'Hotel ID is required'],
         },
+        status: {
+            type: Boolean,
+            default: true,
+        }
+    },
+    {
+        timestamps: true,
     }
 )
 
