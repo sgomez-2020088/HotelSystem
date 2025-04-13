@@ -7,7 +7,7 @@ export const addReservation = async (req, res) => {
     try {
         let data = req.body
 
-        data.user = req.user.id
+        data.user = req.user.uid
 
         let hotelId = await Hotel.findById(data.hotelId)
         if(!hotelId) return res.status(404).send({ message: 'Hotel not found', success: false })
