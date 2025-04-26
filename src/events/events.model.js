@@ -25,7 +25,7 @@ const eventsSchema = Schema({
     },
     status: {
         type: Boolean,
-        enum: ['ACEPT', 'DECLINE']
+        required: true
     },
     hotel: {
         type: mongoose.Schema.Types.ObjectId,
