@@ -86,6 +86,28 @@ export const getMyHistoryReservations = async(req,res)=>{
     }
 }
 
+export const cancelReservation = async(req,res)=>{
+    try {
+        let {idReservation} = req.body
+
+        let reservation = await Reservation.findById(idReservation)
+        if(!reservation) return res.status(404).send({success:false,message:'Reservation not found'})
+        
+        if(reservation.user != req.user.uid)return res.status(404).send({sucess:false, message:'You do not have access to this reservation'})
+    
+        if(reservation.status != 'confirmed') return res.status(404).send({success:false,message:'Reservation already canceled'})
+
+        let reservationCanceled = await Reservation.findByIdAndUpdate(
+            idReservation,{status:'canceled'}, {new:true}
+        )
+        if(!reservationCanceled) return res.status(404).send({success:false,message:'Reservation not found'})
+        return res.send({success:true, message:'Reservation canceled successfully', reservationCanceled})
+    } catch (err) {
+        console.error(err)
+        return res.status(500).send({success:false, message:'General Error',err})
+    }
+}
+
 
 
 
