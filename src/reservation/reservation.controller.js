@@ -34,7 +34,7 @@ export const getReservationsHotel = async (req, res) => {
     try {
         let {hotelName} = req.body
 
-        let hotel = await Hotel.findOne({name: hotelName})
+        let hotel = await Hotel.findById(hotelName)    
         if(!hotel) return res.status(404).send({ message: 'Hotel not found', success: false })
         
         let reservations = await Reservation.find({hotel: hotelName})
@@ -48,4 +48,45 @@ export const getReservationsHotel = async (req, res) => {
 }
 
 //Get My Reservations
+export const getMyReservations = async (req, res) => {
+    try {
+        let userId = req.user.uid
+        let reservations = await Reservation.find(
+            { 
+                $and:[
+                    {user:userId },
+                    {status:"confirmed"}        
+                ] 
+            }
+        )
+        if(reservations.length === 0) return res.status(404).send({success:false,message:'You do not have reservations'})
+        return res.send({success:true, message:'Reservations found', reservations})
+        } catch (err) {
+        console.error(err)
+        return res.status(500).send({success:false, message:'General Error',err})
+    }
+}
+
+export const getMyHistoryReservations = async(req,res)=>{
+    try {
+        let userId = req.user.uid
+        let reservations = await Reservation.find(
+            { 
+                $and:[
+                    {user:userId },
+                    {status:"completed"}        
+                ] 
+            }
+        )
+        if(reservations.length === 0) return res.status(404).send({success:false,message:'You do not have reservations'})
+        return res.send({success:true, message:'Your history of reservation', reservations})
+    } catch (err) {
+        console.error(err)
+        return res.status(500).send({success:false, message:'General Error',err})
+    }
+}
+
+
+
+
 
