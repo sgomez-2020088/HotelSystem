@@ -11,14 +11,32 @@ export const addReservation = async (req, res) => {
 
         let checkIn = new Date(data.checkIn).getUTCDate()
         let checkOut = new Date(data.checkOut).getUTCDate()
-        
+
+        let existReservation = await Reservation.findOne({
+            $and:[
+                {hotel:data.hotel},
+                {hotelRoom:data.hotelRoom},
+                {status:'confirmed'}
+            ],
+            $or:[
+                {checkIn:data.checkIn},
+                {checkOut:data.checkOut}
+            ]
+        })
+        console.log(existReservation)
+        if(existReservation) return res.status(404).send({ message: 'This hotel room is already reserved', success: false })
+
         let hotelId = await Hotel.findById(data.hotel)
         if(!hotelId) return res.status(404).send({ message: 'Hotel not found', success: false })
             
         let hotelRoomId = await HotelRoom.findById(data.hotelRoom)
+        
         let days = checkOut - checkIn
         data.total = (hotelRoomId.price * days)
+
         if(!hotelRoomId) return res.status(404).send({ message: 'Hotel room not found', success: false })    
+        
+        if(hotelRoomId.hotel != data.hotel) return res.status(404).send({ message: 'Hotel room does not belong to this hotel', success: false })  
         
         let reservation = new Reservation(data)
         await reservation.save()
