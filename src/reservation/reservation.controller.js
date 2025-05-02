@@ -50,12 +50,12 @@ export const addReservation = async (req, res) => {
 
 export const getReservationsHotel = async (req, res) => {
     try {
-        let {hotelName} = req.body
+        let {hotelId} = req.body
 
-        let hotel = await Hotel.findById(hotelName)    
+        let hotel = await Hotel.findById(hotelId)    
         if(!hotel) return res.status(404).send({ message: 'Hotel not found', success: false })
         
-        let reservations = await Reservation.find({hotel: hotelName})
+        let reservations = await Reservation.find({hotel: hotelId})
         if(!reservations) return res.status(404).send({ message: 'Reservations not found', success: false })
             
         return res.send({success: true, message:'Reservations found', reservations})
