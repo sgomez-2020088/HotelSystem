@@ -26,3 +26,22 @@ export const hotelValidator = [
     body('amenities', 'Amenities cannot be empty').notEmpty(),
     validateErrors
 ]
+
+export const reservationValidator = [
+    body('hotel', 'Hotel cannot be empty').notEmpty(),
+    body('hotelRoom', 'Hotel room cannot be empty').notEmpty(),
+    body('checkIn', 'Check in cannot be empty').notEmpty(),
+    body('checkOut', 'Check out cannot be empty').notEmpty(),
+    body('services', 'Services cannot be empty').notEmpty(),
+    validateErrors
+]
+
+export const reservationHotelValidator = [
+    body('hotelId', 'Hotel id cannot be empty').notEmpty(),
+    validateErrors
+]
+
+export const cancelReservationValidator = [
+    body('reservationId', 'Reservation id cannot be empty').notEmpty(),
+    validateErrors
+]
