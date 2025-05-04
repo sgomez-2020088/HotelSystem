@@ -1,4 +1,4 @@
-//import User from '../src/user/user.model.js'
+import User from '../src/user/user.model.js'
 
 export const exitEmailUser = async(email)=>{
     const alreadyEmail = await User.findOne({email})
@@ -8,6 +8,18 @@ export const exitEmailUser = async(email)=>{
     }
 }
 
+export const existUser = async(userInformation)=>{
+    const alreadyUser = await User.findOne({
+        $or:[
+            {email: userInformation},
+            {username: userInformation}
+        ]
+    })
+    if(!alreadyUser){
+        console.error(`User not found `)
+        throw new Error(`User not found`)
+    }
+}
 export const findUser = async(id)=>{
     try{
         const userExist = await User.findById(id)

@@ -1,6 +1,6 @@
 import { body } from 'express-validator' 
 import { validateErrors} from './validate.errors.js'
-import { exitEmailUser } from './db.validators.js'
+import { existUser, exitEmailUser } from './db.validators.js'
 
 export const registerValidator = [
     body('name', 'Name cannot be empty').notEmpty(),
@@ -14,8 +14,8 @@ export const registerValidator = [
 ]
 
 export const loginValidator = [
+    body('userInformation', 'userInformation cannot be empty').notEmpty().custom(existUser),
     body('password', 'Password cannot be empty').notEmpty(),
-    body('userInformation', 'userInformation cannot be empty').notEmpty(),
     validateErrors
 ]
 
