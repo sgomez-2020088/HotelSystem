@@ -71,3 +71,15 @@ export const cancelReservationValidator = [
     body('idReservation', 'Reservation id cannot be empty').notEmpty(),
     validateErrors
 ]
+
+export const eventsValidator = [
+    body('name', 'Name cannot be empty').notEmpty(),
+    body('date', 'Date cannot be empty').notEmpty(),
+    body('description', 'Description cannot be empty'). notEmpty(),
+    body('resource', 'Resource cannot be empty').notEmpty(),
+    body('extras', 'Extras cannot be empty').notEmpty(),
+    body('status', 'Status cannot be empty').notEmpty(),
+    body('hotel', 'Hotel id cannot be empty').notEmpty(),
+
+    validateErrors
+]
