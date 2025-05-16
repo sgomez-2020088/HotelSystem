@@ -18,6 +18,33 @@ export const loginValidator = [
     validateErrors
 ]
 
+export const getOneUserValidator = [
+    body('id','User id cannot be empty').notEmpty(),
+    validateErrors
+]
+
+export const updateUserRoleValidator = [
+    body('id','User id cannot be empty').notEmpty(),
+    body('role','Role cannot be empty').notEmpty(),
+    validateErrors
+]
+
+export const updateUserValidator = [
+    body('name', 'Name cannot be empty').optional().notEmpty(),
+    body('surname', 'Name cannot be empty').optional().notEmpty(),
+    body('email', 'Email cannot be empty').optional().notEmpty().isEmail().custom(exitEmailUser),
+    body('username', 'Email cannot be empty').optional().notEmpty(),
+    body('phone', 'Phone cannot be empty').optional().notEmpty().isMobilePhone(),
+    validateErrors
+]
+
+export const updateUserPassValidator = [
+    body('currentPassword', 'Current password cannot be empty').notEmpty(),
+    body('newPassword', 'New password cannot be empty').notEmpty(),
+    validateErrors
+]
+
+
 export const hotelValidator = [
     body('name', 'Name cannot be empty or is too long').notEmpty().isLength({max: 25}),
     body('address', 'Address cannot be empty').notEmpty(),
