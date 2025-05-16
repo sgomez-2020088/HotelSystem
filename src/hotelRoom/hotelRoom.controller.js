@@ -38,7 +38,7 @@ export const getHotelById = async (req, res) => {
     }
 }
 
- export const updateHotelRoom = async (req, res) => {
+export const updateHotelRoom = async (req, res) => {
     try {
         const hotelRoomId = req.body.id
         const data = req.body
@@ -51,7 +51,7 @@ export const getHotelById = async (req, res) => {
         console.error(err)
         return res.status(500).send({message: 'General error', err, success: false})
     }
- }
+}
 
 
 export const deleteHotelRoom = async (req, res) => {

@@ -12,6 +12,8 @@ import userRoutes from '../src/user/user.routes.js'
 import hotelRoomRoutes from '../src/hotelRoom/hotelRoom.routes.js'
 import eventsRoutes from '../src/events/events.routes.js'
 import reservatrionRoutes from '../src/reservation/reservation.routes.js'
+import { createDefaultAdmin } from './setUpData'
+
 
 const configs = (app)=>{
     app.use(express.json())
@@ -35,6 +37,7 @@ export const initServer = async()=> {
     const app = express()
 
     try{
+        await createDefaultAdmin()
         configs(app)
         routes(app)
         app.listen(process.env.PORT)
