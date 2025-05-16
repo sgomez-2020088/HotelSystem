@@ -40,9 +40,6 @@ export const updateUser = async(req, res) =>{
         const userToUpdate = await User.findById(userId)
         if(!userToUpdate) return res.status(404).send({success: false,message: 'User not found'})
 
-        if(userToUpdate.role === 'ADMIN' && role === 'CLIENT') {
-            return res.status(403).send({success: false,message: 'You cannot downgade an ADMIN to CLIENT'})}
-
         const updateUser = await User.findByIdAndUpdate(userId, data, {new: true})
         return res.send({success: true,message: 'User updated',updateUser})
 
@@ -55,7 +52,8 @@ export const updateUser = async(req, res) =>{
 
 export const updatePassword = async(req, res) => {
     try {
-        const { id, currentPassword, newPassword } = req.body
+        const id = req.user.uid
+        const {  currentPassword, newPassword } = req.body
 
         if(!id || !currentPassword || !newPassword){
             return res.status(400).send({success: false,message: 'All fields are required: id, currentPassword, newPassword'})}
@@ -80,6 +78,26 @@ export const updatePassword = async(req, res) => {
         return res.status(500).send({success: false,message: 'General error', err})
     }
 }
+
+export const updateUserRole = async (req, res) => {
+    try {
+        const { id, role } = req.body
+
+        const userUpdated = await User.findById(id)
+        if (!userUpdated) return res.status(404).send({ success: false, message: 'User not found' })
+        
+        if (userUpdated.role === 'ADMIN') return res.status(403).send({ success: false, message: 'You cannot downgrade an ADMIN to CLIENT' })
+        if (userUpdated.role === 'USER') return res.status(403).send({ success: false, message: 'Already User role' })
+        
+        userUpdated.role = role
+        await userUpdated.save()
+
+        return res.send({ success: true, message: 'User role updated', user: userUpdated })
+    } catch (err) {
+        console.error(err)
+        return res.status(500).send({ success: false, message: 'General error', err })
+    }
+    }
 
 export const deleteOne = async(req, res) =>{
     try {
