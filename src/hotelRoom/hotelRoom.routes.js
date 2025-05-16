@@ -6,8 +6,8 @@ const api = Router()
 
 api.post('/add',[validateJwt],addHotelRoom)
 api.get('/getAll',[validateJwt], getAllHotelRoom)
-api.get('/getOne',[validateJwt], getHotelById)
-api.put('/update',[validateJwt], updateHotelRoom)
-api.delete('/delete',[validateJwt], deleteHotelRoom)
+api.delete('/delete/:id',[validateJwt], deleteHotelRoom)
+api.put('/update/:id',[validateJwt], updateHotelRoom)
+api.get('/getOne/:id',[validateJwt], getHotelById)
 
 export default api
