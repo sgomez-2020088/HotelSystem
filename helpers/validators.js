@@ -9,7 +9,6 @@ export const registerValidator = [
     body('username', 'Email cannot be empty').notEmpty(),
     body('password', 'Password cannot be empty').notEmpty().isStrongPassword().withMessage('Password must be strong').isLength({min:8}),
     body('phone', 'Phone cannot be empty').notEmpty().isMobilePhone(),
-    body('address', 'Address cannot be empty').notEmpty(),
     validateErrors
 ]
 
@@ -42,6 +41,6 @@ export const reservationHotelValidator = [
 ]
 
 export const cancelReservationValidator = [
-    body('reservationId', 'Reservation id cannot be empty').notEmpty(),
+    body('idReservation', 'Reservation id cannot be empty').notEmpty(),
     validateErrors
 ]

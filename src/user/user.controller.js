@@ -90,7 +90,7 @@ export const updatePassword = async(req, res) => {
 export const deleteOne = async(req, res) =>{
     try {
         const userId = req.body.id
-
+        
         const user = await User.findByIdAndUpdate(userId, { status: false }, { new: true })
         if(!user){return res.status(404).send({success: false,message: 'User not found'})}
 

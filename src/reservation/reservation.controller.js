@@ -31,10 +31,11 @@ export const addReservation = async (req, res) => {
             
         let hotelRoomId = await HotelRoom.findById(data.hotelRoom)
         
+        if(!hotelRoomId) return res.status(404).send({ message: 'Hotel room not found', success: false })    
+        
         let days = checkOut - checkIn
         data.total = (hotelRoomId.price * days)
 
-        if(!hotelRoomId) return res.status(404).send({ message: 'Hotel room not found', success: false })    
         
         if(hotelRoomId.hotel != data.hotel) return res.status(404).send({ message: 'Hotel room does not belong to this hotel', success: false })  
         
