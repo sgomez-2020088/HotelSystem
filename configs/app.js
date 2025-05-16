@@ -12,7 +12,8 @@ import userRoutes from '../src/user/user.routes.js'
 import hotelRoomRoutes from '../src/hotelRoom/hotelRoom.routes.js'
 import eventsRoutes from '../src/events/events.routes.js'
 import reservatrionRoutes from '../src/reservation/reservation.routes.js'
-import { createDefaultAdmin } from './setUpData'
+import { createDefaultAdmin } from './setUpData.js'
+
 
 
 const configs = (app)=>{

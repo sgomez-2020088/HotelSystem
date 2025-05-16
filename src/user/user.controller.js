@@ -21,10 +21,10 @@ export const getOne = async(req, res)=>{
     try {
         const { id } = req.body
         const user = await User.findById(id)
- 
+
         if(!user) return res.status(404).send({success: false, message: 'User not found'})
         return res.send({success: true, message: 'User found', user})
- 
+
     }catch(err){
         console.error(err)
         return res.status(500).send({success: false, message: 'General error', err}
@@ -34,23 +34,16 @@ export const getOne = async(req, res)=>{
 
 export const updateUser = async(req, res) =>{
     try {
-        const { id } = req.body
+        const userId = req.user.uid
+        const { data } = req.body
 
-        const { name, surname, username, email, phone, role } = req.body
-        const userToUpdate = await User.findById(id)
-
-        if(!userToUpdate){
-            return res.status(404).send({success: false,message: 'User not found'})}
+        const userToUpdate = await User.findById(userId)
+        if(!userToUpdate) return res.status(404).send({success: false,message: 'User not found'})
 
         if(userToUpdate.role === 'ADMIN' && role === 'CLIENT') {
             return res.status(403).send({success: false,message: 'You cannot downgade an ADMIN to CLIENT'})}
 
-        const updateUser = await User.findByIdAndUpdate(
-            id,
-            { name, surname, username, email, phone, role },
-            { new: true }
-        )
-
+        const updateUser = await User.findByIdAndUpdate(userId, data, {new: true})
         return res.send({success: true,message: 'User updated',updateUser})
 
     } catch(err){
@@ -58,6 +51,7 @@ export const updateUser = async(req, res) =>{
         return res.status(500).send({success: false,message: 'General error', err})
     }
 }
+
 
 export const updatePassword = async(req, res) => {
     try {
@@ -89,7 +83,7 @@ export const updatePassword = async(req, res) => {
 
 export const deleteOne = async(req, res) =>{
     try {
-        const userId = req.body.id
+        const userId = req.user.uid
         
         const user = await User.findByIdAndUpdate(userId, { status: false }, { new: true })
         if(!user){return res.status(404).send({success: false,message: 'User not found'})}
