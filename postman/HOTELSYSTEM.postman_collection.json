@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "88ac5474-3f83-4440-98e5-90a5424e9685",
+		"_postman_id": "fa59ebb4-7099-438e-becb-c45fe3c85a05",
 		"name": "HOTELSYSTEM",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37951897"
+		"_exporter_id": "37951898"
 	},
 	"item": [
 		{
@@ -19,27 +19,27 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "Sergio",
+									"value": "Dilan ",
 									"type": "text"
 								},
 								{
 									"key": "surname",
-									"value": "Gomez",
+									"value": "Rodas",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "sgomez@gmail.com",
+									"value": "dilirodas07@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "sgomez",
+									"value": "dili07",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "123.sd/",
+									"value": "sdjksldjsd*/5aS",
 									"type": "text"
 								},
 								{
@@ -87,12 +87,12 @@
 							"urlencoded": [
 								{
 									"key": "password",
-									"value": "123.sd/",
+									"value": "sdjksldjsd*/5aS",
 									"type": "text"
 								},
 								{
 									"key": "userInformation",
-									"value": "sgomez@gmail.com",
+									"value": "dili07",
 									"type": "text"
 								}
 							]
@@ -133,7 +133,7 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "Hilton",
+									"value": "Hilton245",
 									"type": "text"
 								},
 								{
@@ -188,12 +188,14 @@
 								{
 									"key": "password",
 									"value": "12345678",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "userInformation",
 									"value": "jsjsjs@gmail.co",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
@@ -231,7 +233,7 @@
 							"urlencoded": [
 								{
 									"key": "id",
-									"value": "67fb062d87695f0adf6c2530",
+									"value": "680db8b0ab2c5787b1a1fea6",
 									"type": "text"
 								},
 								{
@@ -273,14 +275,18 @@
 							"urlencoded": [
 								{
 									"key": "id",
-									"value": "67fb062d87695f0adf6c2530",
+									"value": "6826930bf06c287493326449",
 									"type": "text"
 								},
 								{
-									"key": "",
-									"value": "jsjsjs@gmail.co",
-									"type": "text",
-									"disabled": true
+									"key": "name",
+									"value": "Hilton2",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "",
+									"type": "text"
 								}
 							]
 						},
@@ -298,14 +304,278 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "6826930bf06c287493326449",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "jsjsjs@gmail.co",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/hotel/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"hotel",
+								"delete"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "hotel room",
+			"name": "Reservations",
 			"item": [
 				{
-					"name": "ADD HOTEL ROOM",
+					"name": "ADD RESERVATIONS",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "hotel",
+									"value": "6826930bf06c287493326449",
+									"type": "text"
+								},
+								{
+									"key": "hotelRoom",
+									"value": "68269d35869fe020fc2cd601",
+									"type": "text"
+								},
+								{
+									"key": "checkIn",
+									"value": "2025-03-24",
+									"type": "text"
+								},
+								{
+									"key": "checkOut",
+									"value": "2025-03-26",
+									"type": "text"
+								},
+								{
+									"key": "services",
+									"value": "sdsdsd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/reservation/reservate",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"reservation",
+								"reservate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET RESERVATION HOTEL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "hotelId",
+									"value": "6826930bf06c287493326449",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/reservation/reservationsHotel",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"reservation",
+								"reservationsHotel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET MY RESERVATION",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "hotelName",
+									"value": "Hilton2",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/reservation/myReservations",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"reservation",
+								"myReservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET MY HISTORY RESERVATION",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userInformation",
+									"value": "Dili07",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "ssss",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/reservation/myHistoryReservations",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"reservation",
+								"myHistoryReservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE RESERVATION",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "idReservation",
+									"value": "68269d50869fe020fc2cd606",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/reservation/deleteReservation",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"reservation",
+								"deleteReservation"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hotel Room",
+			"item": [
+				{
+					"name": "ADD HOTELROOM",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -320,33 +590,27 @@
 							"urlencoded": [
 								{
 									"key": "number",
-									"value": "A213",
+									"value": "309",
 									"type": "text"
 								},
 								{
 									"key": "type",
-									"value": "double",
+									"value": "suite",
 									"type": "text"
 								},
 								{
 									"key": "price",
-									"value": "240",
-									"description": "Per Nigth",
+									"value": "800",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "No description",
-									"type": "text"
-								},
-								{
-									"key": "imagen",
-									"value": "",
+									"value": "Cuatyo para 8 personas con 4 camas, sala, comedor etc",
 									"type": "text"
 								},
 								{
 									"key": "hotel",
-									"value": "67fb062d87695f0adf6c2530",
+									"value": "6826930bf06c287493326449",
 									"type": "text"
 								}
 							]
@@ -429,7 +693,7 @@
 							"urlencoded": [
 								{
 									"key": "id",
-									"value": "67fb0ffd1a069f0669c26448",
+									"value": "6826930bf06c287493326449",
 									"type": "text"
 								}
 							]
@@ -448,8 +712,393 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "UPDATE HOTEL ROOM",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "hotelRoomId",
+									"value": "68269a9a2141f3dc1186f347",
+									"type": "text"
+								},
+								{
+									"key": "number",
+									"value": "302",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/hotelRoom/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"hotelRoom",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE HOTEL ROOM Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "68269a9a2141f3dc1186f347",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "302",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/hotelRoom/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"hotelRoom",
+								"delete"
+							]
+						}
+					},
+					"response": []
 				}
 			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GET ALL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "limit ",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "skip",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/user/getAll",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"user",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ONE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "68268d42fcf01dbce038fb43",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/user/getOne",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"user",
+								"getOne"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE USER",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "68268d3bfcf01dbce038fb40",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Dilan ",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "rodas",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "dili",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "dilirodas@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/user/updateUser",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"user",
+								"updateUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE PASSWORD",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "68268d42fcf01dbce038fb43",
+									"type": "text"
+								},
+								{
+									"key": "currentPassword",
+									"value": "sdjksldjsd*/5aSw",
+									"type": "text"
+								},
+								{
+									"key": "newPassword",
+									"value": "sdjksldjsd*/5aS",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "dili",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "dilirodas@gmail.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phone",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/user/updatePassword",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"user",
+								"updatePassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE PASSWORD Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userId",
+									"value": "68268d3bfcf01dbce038fb40",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Dilan ",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "surname",
+									"value": "rodas",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "username",
+									"value": "dili",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "dilirodas@gmail.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phone",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/user/deleteOne",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"user",
+								"deleteOne"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": []
 		}
 	]
 }
