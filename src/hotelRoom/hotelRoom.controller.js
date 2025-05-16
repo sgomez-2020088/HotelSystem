@@ -42,7 +42,7 @@ export const getHotelById = async (req, res) => {
     try {
         const hotelRoomId = req.body.id
         const data = req.body
-
+        
         const updatedHotelRoom = await HotelRoom.findByIdAndUpdate(hotelRoomId, data, { new: true })
         if (!updatedHotelRoom) return res.status(404).send({ message: 'Hotel room not found', success: false })
 
