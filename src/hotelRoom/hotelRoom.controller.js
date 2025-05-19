@@ -4,7 +4,7 @@ import Hotel from '../hotel/hotel.model.js'
 
 export const addHotelRoom = async (req, res) => {
     try {
-        const { idHotel, number, ...data} = req.body
+        const { idHotel, /*number,*/ ...data} = req.body
 
         const hotel = await Hotel.findById(idHotel)
 
@@ -16,7 +16,7 @@ export const addHotelRoom = async (req, res) => {
                 }
             )
         }
-
+/*
         const hotelRoomNumber = await HotelRoom.findOne(
             { 
                 number, 
@@ -32,7 +32,7 @@ export const addHotelRoom = async (req, res) => {
                 }
             )
         }
-
+*/
         const hotelRoom = new HotelRoom(
             {
                 ...data,
