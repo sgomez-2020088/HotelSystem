@@ -19,7 +19,7 @@ export const addHotelRoom = async (req, res) => {
 /*
         const hotelRoomNumber = await HotelRoom.findOne(
             { 
-                number, 
+                number,
                 hotel: hotel._id 
             }
         )
@@ -36,6 +36,7 @@ export const addHotelRoom = async (req, res) => {
         const hotelRoom = new HotelRoom(
             {
                 ...data,
+                number: number,
                 hotel: hotel._id
             }
         )
@@ -62,31 +63,6 @@ export const addHotelRoom = async (req, res) => {
     }
 }
 
-export const getAllHotelRoom = async (req,res ) =>{
-    try {
-        const hotelsRoom = await HotelRoom.find({ $nor: [{ status: false }] })
-        if(!hotelsRoom.length === 0) return res.status(400).send({message: 'Hotels rooms not found', success: false})
-            return res.send({message: 'Any room found', success: true, hotelsRoom})
-    } catch (err) {
-        console.error(err)
-        return res.status(500).send({message: 'General error', err, success: false})
-    }
-}
-
-export const getHotelById = async (req, res) => {
-    try {
-        const { id } = req.params
-        const hotelRoom = await HotelRoom.find({_id: id, $nor: [{ status: false }]})
-
-        if(hotelRoom.length === 0) return res.status(404).send({message: 'Hotel Room not found', success: false})
-        if(hotelRoom.status === false) return res.status(400).send({message: 'Hotel room not found', success: false})
-            return res.send({message: 'Hotel room found', success: true, hotelRoom})
-        } catch (err) {
-        console.error(err)
-        return res.status(500).send({message: 'General error',err, success: false})
-    }
-}
-
 export const updateHotelRoom = async (req, res) => {
     try {
         const hotelRoomId = req.params.id
@@ -110,19 +86,150 @@ export const updateHotelRoom = async (req, res) => {
         return res.send({ message: 'Hotel room updated successfully', hotelRoom: updatedHotelRoom, success: true })
     } catch (err) {
         console.error(err)
-        return res.status(500).send({message: 'General error', err, success: false})
+        return res.status(500).send(
+            {
+                message: 'General error', 
+                err, 
+                success: false
+            }
+        )
     }
 }
-
 
 export const deleteHotelRoom = async (req, res) => {
     try {
         const id = req.params.id
-        const deletedHotelRoom = await HotelRoom.findByIdAndUpdate(id, {status:false})
-        if(!deletedHotelRoom) return res.status(404).send({message: 'Hotel room not found', success: false})
-        return res.send({message: 'Hotel room deleted successfully', success: true})
+
+        const deletedHotelRoom = await HotelRoom.findByIdAndUpdate(
+            id, 
+            {status:false}
+        )
+
+        if(!deletedHotelRoom) {
+            return res.status(404).send(
+                {
+                    message: 'Hotel room not found', 
+                    success: false
+                }
+            )
+        }
+        return res.send(
+            {
+                message: 'Hotel room deleted successfully', 
+                success: true
+            }
+        )
     } catch (err) {
         console.error(err)
-        return res.status(500).send({message: 'General error', err, success: false})
+        return res.status(500).send(
+            {
+                message: 'General error', 
+                err, 
+                success: false
+            }
+        )
+    }
+}
+
+export const getOneRoom = async(req, res) =>{
+    try {
+        const id = req.params.id
+
+        const room = await HotelRoom.findById(id)
+
+        if(!room) {
+            return res.status(404).send(
+                {
+                    success:false,
+                    message: 'Room not found'
+                }
+            )
+        }
+
+        const hotel = await Hotel.findOne(
+            {
+                _id: room.hotel,
+                status: { $ne: false }
+            
+            }
+        )
+
+        if (!hotel) {
+            return res.status(403)(
+                {
+                    success: false, 
+                    message: 'The room you are trying to access is in an invalid hotel.', 
+                }
+            )
+        }
+
+        return res.status(200).send(
+            {
+                success: true,
+                message: 'Room found',
+                room
+            }
+        )
+    } catch (err) {
+        console.error(err)
+        return res.status(500).send(
+            {
+                message: 'General error getting Room', 
+                err, 
+                success: false
+            }
+        )
+    }
+} 
+
+export const getRoomsFromHotel = async(req, res) => {
+    try {
+        const { id }= req.params
+        console.log(id);
+        
+        const hotel = await Hotel.findById(id)
+        console.log(hotel);
+        
+
+        if(!hotel) {
+            return res.status(404).send(
+                {
+                    success: false,
+                    message: 'Hotel not found'
+                }
+            )
+        }
+
+        const rooms = await HotelRoom.find(
+            {
+                hotel: id
+            }
+        )
+
+        if(rooms.length === 0) {
+            return res.status(200).send(
+                {
+                    success: true,
+                    message: 'This hotel has no rooms'
+                }
+            )
+        }
+
+        return res.status(200).send(
+            {
+                success: true,
+                message: 'Rooms found',
+                rooms
+            }
+        )
+    } catch (err) {
+        console.error(err)
+        return res.status(500).send(
+            {
+                message: 'General error getting Rooms from Hotel', 
+                err, 
+                success: false
+            }
+        )
     }
 }

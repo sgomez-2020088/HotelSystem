@@ -1,4 +1,4 @@
-import { Schema, model} from "mongoose"
+import { Schema, model} from 'mongoose'
 
 const hotelSchema = Schema({
     name:{
@@ -15,7 +15,8 @@ const hotelSchema = Schema({
     category:{
         type: String, 
         required: [true, 'Category is required'],
-        maxLength: [100, 'Can´t be overcome 100 characters']
+        maxLength: [100, 'Can´t be overcome 100 characters'],
+        enum: ['Hotel', 'Hostal', 'Casa de huéspedes', 'HotelNegocios', 'HotelBoutique', 'ComplejoHotelero', 'HotelAeropuerto', 'HotelMontana', 'HotelEcologico']
     },
     amenities:{
         type: String,
