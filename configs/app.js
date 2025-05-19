@@ -13,6 +13,7 @@ import hotelRoomRoutes from '../src/hotelRoom/hotelRoom.routes.js'
 import eventsRoutes from '../src/events/events.routes.js'
 import reservatrionRoutes from '../src/reservation/reservation.routes.js'
 import { createDefaultAdmin } from './setUpData.js'
+import billRoutes from '../src/bill/bill.routes.js'
 
 
 
@@ -32,6 +33,7 @@ const routes = (app)=>{
     app.use('/v1/events', eventsRoutes)
     app.use('/v1/user', userRoutes)
     app.use('/v1/reservation', reservatrionRoutes)
+    app.use('/v1/bill', billRoutes)
 }
 
 export const initServer = async()=> {
