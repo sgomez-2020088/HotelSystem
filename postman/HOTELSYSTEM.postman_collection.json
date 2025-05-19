@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c24a9154-090f-465c-b3e4-318fab8ffb3c",
+		"_postman_id": "f1d3b342-00f0-4f12-9754-86a47556148f",
 		"name": "HOTELSYSTEM",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "37951891"
@@ -143,7 +143,7 @@
 								},
 								{
 									"key": "category",
-									"value": "No",
+									"value": "Hotel",
 									"type": "text"
 								},
 								{
@@ -590,7 +590,7 @@
 							"urlencoded": [
 								{
 									"key": "number",
-									"value": "309",
+									"value": "404",
 									"type": "text"
 								},
 								{
@@ -605,12 +605,12 @@
 								},
 								{
 									"key": "description",
-									"value": "Cuatyo para 8 personas con 4 camas, sala, comedor etc",
+									"value": "Cuarto para 8 personas con 4 camas, sala, comedor etc",
 									"type": "text"
 								},
 								{
 									"key": "idHotel",
-									"value": "6826a51ee44f13acfea1c250",
+									"value": "682b5a2900345b53a8955286",
 									"type": "text"
 								}
 							]
@@ -631,12 +631,9 @@
 					"response": []
 				},
 				{
-					"name": "GET ALL HOTELS ROOM",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "UPDATE HOTEL ROOM",
 					"request": {
-						"method": "GET",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",
@@ -648,19 +645,14 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "password",
-									"value": "12345678",
-									"type": "text"
-								},
-								{
-									"key": "userInformation",
-									"value": "jsjsjs@gmail.co",
+									"key": "number",
+									"value": "201",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "localhost:3640/v1/hotelRoom/getAll",
+							"raw": "localhost:3640/v1/hotelRoom/update/682b5b0b3eb16a64bbe40b35",
 							"host": [
 								"localhost"
 							],
@@ -668,7 +660,46 @@
 							"path": [
 								"v1",
 								"hotelRoom",
-								"getAll"
+								"update",
+								"682b5b0b3eb16a64bbe40b35"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE HOTEL ROOM",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "",
+									"value": "302",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/hotelRoom/delete/682b5b0b3eb16a64bbe40b35",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"hotelRoom",
+								"delete",
+								"682b5b0b3eb16a64bbe40b35"
 							]
 						}
 					},
@@ -693,7 +724,7 @@
 							"urlencoded": []
 						},
 						"url": {
-							"raw": "localhost:3640/v1/hotelRoom/getOne/6826a6b3a67d9e4b2743091e",
+							"raw": "localhost:3640/v1/hotelRoom/find/682b5b673eb16a64bbe40b39",
 							"host": [
 								"localhost"
 							],
@@ -701,17 +732,20 @@
 							"path": [
 								"v1",
 								"hotelRoom",
-								"getOne",
-								"6826a6b3a67d9e4b2743091e"
+								"find",
+								"682b5b673eb16a64bbe40b39"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "UPDATE HOTEL ROOM",
+					"name": "GET HOTEL ROOMS",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "PUT",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
@@ -721,16 +755,10 @@
 						],
 						"body": {
 							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "number",
-									"value": "302",
-									"type": "text"
-								}
-							]
+							"urlencoded": []
 						},
 						"url": {
-							"raw": "localhost:3640/v1/hotelRoom/update/6826a6b3a67d9e4b2743091e",
+							"raw": "localhost:3640/v1/hotelRoom/682b5a2900345b53a8955286/rooms",
 							"host": [
 								"localhost"
 							],
@@ -738,46 +766,8 @@
 							"path": [
 								"v1",
 								"hotelRoom",
-								"update",
-								"6826a6b3a67d9e4b2743091e"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "UPDATE HOTEL ROOM",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "",
-									"value": "302",
-									"type": "text",
-									"disabled": true
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3640/v1/hotelRoom/delete/6826a6c3834cc8c362df1f35",
-							"host": [
-								"localhost"
-							],
-							"port": "3640",
-							"path": [
-								"v1",
-								"hotelRoom",
-								"delete",
-								"6826a6c3834cc8c362df1f35"
+								"682b5a2900345b53a8955286",
+								"rooms"
 							]
 						}
 					},
