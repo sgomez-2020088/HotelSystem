@@ -180,7 +180,7 @@ export const getOneRoom = async(req, res) =>{
             }
         )
     }
-} 
+}   
 
 export const getRoomsFromHotel = async(req, res) => {
     try {
