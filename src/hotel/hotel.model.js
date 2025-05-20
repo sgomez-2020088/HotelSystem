@@ -22,6 +22,9 @@ const hotelSchema = Schema({
         type: String,
         required: [true, 'Amenities is required'],
         maxLength: [150, 'Can´t be overcome 150 characters']
+    },
+    hotelImages:{
+        type: String
     }
 }, {timestamps: true})
 
