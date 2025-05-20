@@ -34,4 +34,4 @@ const multerConfig = (destinationPath)=>{
     )
 }
 
-export const uploadProfilePicture = multerConfig('../uploads/img/hotelMedia') 
+export const uploadHotelPicture = multerConfig('../uploads/img/hotelMedia')
