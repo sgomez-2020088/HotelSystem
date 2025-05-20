@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f1d3b342-00f0-4f12-9754-86a47556148f",
+		"_postman_id": "207c5045-6495-4d79-bc35-9dcbce7bb1f2",
 		"name": "HOTELSYSTEM",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37951891"
+		"_exporter_id": "37951897"
 	},
 	"item": [
 		{
@@ -129,16 +129,16 @@
 							}
 						],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
+							"mode": "formdata",
+							"formdata": [
 								{
 									"key": "name",
-									"value": "Hilton245",
+									"value": "Hiltummm",
 									"type": "text"
 								},
 								{
 									"key": "address",
-									"value": "Carretera a el salvador",
+									"value": "nose",
 									"type": "text"
 								},
 								{
@@ -148,8 +148,13 @@
 								},
 								{
 									"key": "amenities",
-									"value": "No",
+									"value": "no",
 									"type": "text"
+								},
+								{
+									"key": "hotelImages",
+									"type": "file",
+									"src": "/Users/sergiogomez/Desktop/Screenshot 2025-05-19 at 10.20.19 PM.png"
 								}
 							]
 						},
