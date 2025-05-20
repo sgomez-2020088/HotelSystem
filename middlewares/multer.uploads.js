@@ -35,3 +35,4 @@ const multerConfig = (destinationPath)=>{
 }
 
 export const uploadHotelPicture = multerConfig('../uploads/img/hotelMedia')
+//l
