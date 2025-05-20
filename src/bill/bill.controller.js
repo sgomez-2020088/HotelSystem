@@ -38,7 +38,7 @@ export const getAllBill = async (req, res)=>{
                     {path: 'hotelRoom', select: 'number type price -_id'}
                 ]
         })
-       
+      
         if(!bills.length === 0) return res.status(400).send({message: 'bills not found', success: false })
             
             return res.send({message: 'Bills found', success: true, bills                })
