@@ -23,6 +23,10 @@ const hotelSchema = Schema({
         required: [true, 'Amenities is required'],
         maxLength: [150, 'Can´t be overcome 150 characters']
     },
+    status:{
+        type: Boolean,
+        default: true
+    },
     hotelImages:{
         data: Buffer,
         contentType: String
