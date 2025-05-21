@@ -19,7 +19,7 @@ api.post(
 )
 
 api.get('/getAll',[validateJwt], getAllHotels)
-api.get('/getOne',[validateJwt], getHotelById) 
+api.get('/getOne/:id',[validateJwt], getHotelById) 
 api.put('/update',[validateJwt], updateHotel)
 api.delete('/delete',[validateJwt], deleteHotel)
 
