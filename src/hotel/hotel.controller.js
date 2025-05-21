@@ -40,7 +40,7 @@ export const addHotel = async (req, res) => {
 
 export const getAllHotels = async (req,res ) =>{
     try {
-        const hotels = await Hotel.find()
+        const hotels = await Hotel.find({status: true})
         if(!hotels.length === 0) return res.status(400).send({message: 'Hotels not found', success: false})
             return res.send({message: 'Hotels found', success: true, hotels})
     } catch (err) {
