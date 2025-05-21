@@ -1,6 +1,6 @@
 import Hotel from './hotel.model.js'
 
-export const addHotel = async (req, res) => {
+/*export const addHotel = async (req, res) => {
   try {
     const { body, file } = req
 
@@ -24,6 +24,18 @@ export const addHotel = async (req, res) => {
     console.error(error)
     return res.status(500).send({ message: 'Error saving hotel', success: false })
   }
+}*/
+
+export const addHotel = async (req, res) => {
+  try {
+        let data = req.body
+        let hotel = new Hotel(data)
+        await hotel.save()
+        return res.send({message: 'Hotel added succesfully', success: true})
+      } catch (err) {
+        console.error(err)
+        return res.status(500).send({ message: 'General error',err, success: false })
+      }
 }
 
 export const getAllHotels = async (req,res ) =>{
