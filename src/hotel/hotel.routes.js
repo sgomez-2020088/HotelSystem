@@ -21,7 +21,7 @@ api.post(
 api.get('/getAll',[validateJwt], getAllHotels)
 api.get('/getOne/:id',[validateJwt], getHotelById) 
 api.put('/update',[validateJwt], updateHotel)
-api.delete('/delete',[validateJwt], deleteHotel)
+api.delete('/delete/:id',[validateJwt], deleteHotel)
 
 export default api
 

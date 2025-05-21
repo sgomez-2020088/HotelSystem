@@ -80,7 +80,7 @@ export const updateHotel = async (req, res) => {
 
 export const deleteHotel = async (req, res) => {
     try {
-        const id = req.body.id
+        const {id} = req.params
         const deletedHotel = await Hotel.findByIdAndUpdate(id, {status:false})
         if(!deletedHotel) return res.status(404).send({message: 'Hotel not found', success: false})
             return res.send({message: 'Hotel deleted successfully', success: true})
