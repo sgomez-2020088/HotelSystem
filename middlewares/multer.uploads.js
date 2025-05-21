@@ -1,4 +1,4 @@
-import multer from 'multer'
+/*import multer from 'multer'
 import { dirname, extname, join } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -35,4 +35,22 @@ const multerConfig = (destinationPath)=>{
 }
 
 export const uploadHotelPicture = multerConfig('../uploads/img/hotelMedia')
-//l
+*/
+
+import multer from 'multer'
+
+const MIMETYPES = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp']
+const MAX_SIZE = 10 * 1024 * 1024 // 10 MB
+
+const multerConfigMemory = multer({
+    storage: multer.memoryStorage(),
+    fileFilter: (req, file, cb) => {
+        if (MIMETYPES.includes(file.mimetype)) cb(null, true)
+        else cb(new Error(`Only ${MIMETYPES.join(', ')} are allowed`))
+    },
+    limits: {
+        fileSize: MAX_SIZE
+    }
+})
+
+export const uploadHotelPicture = multerConfigMemory

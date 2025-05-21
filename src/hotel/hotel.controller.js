@@ -1,17 +1,29 @@
 import Hotel from './hotel.model.js'
 
 export const addHotel = async (req, res) => {
-    try {
-        let data = req.body
-        let hotel = new Hotel(data)
-        await hotel.save()
-        return res.send({message: 'Hotel added succesfully', success: true})
+  try {
+    const { body, file } = req
 
-    } catch (err) {
-        console.error(err)
-        return res.status(500).send({ message: 'General error',err, success: false })
-
+    if (!file) {
+      return res.status(400).send({ message: 'Image file is required', success: false })
     }
+
+    const hotelData = {
+      ...body,
+      hotelImages: {
+        data: file.buffer,
+        contentType: file.mimetype
+      }
+    }
+
+    const hotel = new Hotel(hotelData)
+    await hotel.save()
+
+    return res.send({ message: 'Hotel added successfully', success: true, hotel })
+  } catch (error) {
+    console.error(error)
+    return res.status(500).send({ message: 'Error saving hotel', success: false })
+  }
 }
 
 export const getAllHotels = async (req,res ) =>{

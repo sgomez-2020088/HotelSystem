@@ -24,7 +24,8 @@ const hotelSchema = Schema({
         maxLength: [150, 'Can´t be overcome 150 characters']
     },
     hotelImages:{
-        type: String
+        data: Buffer,
+        contentType: String
     }
 }, {timestamps: true})
 
