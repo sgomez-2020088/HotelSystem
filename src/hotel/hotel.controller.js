@@ -51,7 +51,8 @@ export const getAllHotels = async (req,res ) =>{
 
 export const getHotelById = async (req, res) => {
     try {
-        const { id } = req.body
+        const { id } = req.params
+
         const hotel = await Hotel.findById(id)
         if(!hotel) return res.status(404).send({message: 'Hotel not found', success: false})
             return res.send({message: 'Hotel found', success: true, hotel})
