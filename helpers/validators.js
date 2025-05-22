@@ -44,7 +44,6 @@ export const updateUserPassValidator = [
     validateErrors
 ]
 
-
 export const hotelValidator = [
     body('name', 'Name cannot be empty or is too long').notEmpty().isLength({max: 25}),
     body('address', 'Address cannot be empty').notEmpty(),

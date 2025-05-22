@@ -8,8 +8,8 @@ const api = Router()
 api.get('/getAll',[validateJwt, isAdmin], getAll)
 api.get('/getOne',[validateJwt,isAdmin, getOneUserValidator],getOne)
 api.put('/updateUser',[validateJwt,updateUserValidator],updateUser)
-api.put('/updatePassword',[validateJwt,updateUserPassValidator],updatePassword)
+api.put('/updatePassword/:uid',[validateJwt,updateUserPassValidator],updatePassword)
 api.put('/updateRole',[validateJwt, isAdmin, updateUserRoleValidator],updateUserRole)
-api.delete('/deleteOne',[validateJwt],deleteOne)
+api.delete('/deleteOne/:uid',[validateJwt, isAdmin],deleteOne)
 
 export default api

@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "207c5045-6495-4d79-bc35-9dcbce7bb1f2",
+		"_postman_id": "d74de7fe-c630-4a7b-ab61-ffc507bd6f86",
 		"name": "HOTELSYSTEM",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37951897"
+		"_exporter_id": "37951912"
 	},
 	"item": [
 		{
@@ -19,32 +19,32 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "Dilan ",
+									"value": "Jose ",
 									"type": "text"
 								},
 								{
 									"key": "surname",
-									"value": "Rodas",
+									"value": "Arrecis",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "dilirodas07@gmail.com",
+									"value": "arrecis@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "dili07",
+									"value": "cabalo",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "sdjksldjsd*/5aS",
+									"value": "gBk7fJ6Q#",
 									"type": "text"
 								},
 								{
 									"key": "phone",
-									"value": "44396911",
+									"value": "39483384",
 									"type": "text"
 								}
 							]
@@ -87,12 +87,12 @@
 							"urlencoded": [
 								{
 									"key": "password",
-									"value": "sdjksldjsd*/5aS",
+									"value": "123.sd/",
 									"type": "text"
 								},
 								{
 									"key": "userInformation",
-									"value": "dili07",
+									"value": "admin",
 									"type": "text"
 								}
 							]
@@ -129,16 +129,16 @@
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
+							"mode": "urlencoded",
+							"urlencoded": [
 								{
 									"key": "name",
-									"value": "Hiltummm",
+									"value": "Hilton245",
 									"type": "text"
 								},
 								{
 									"key": "address",
-									"value": "nose",
+									"value": "Carretera a el salvador",
 									"type": "text"
 								},
 								{
@@ -148,13 +148,8 @@
 								},
 								{
 									"key": "amenities",
-									"value": "no",
+									"value": "No",
 									"type": "text"
-								},
-								{
-									"key": "hotelImages",
-									"type": "file",
-									"src": "/Users/sergiogomez/Desktop/Screenshot 2025-05-19 at 10.20.19 PM.png"
 								}
 							]
 						},
@@ -846,7 +841,7 @@
 							"urlencoded": [
 								{
 									"key": "id",
-									"value": "68268d42fcf01dbce038fb43",
+									"value": "682e5e4860df77519e9953e4",
 									"type": "text"
 								}
 							]
@@ -882,27 +877,27 @@
 							"urlencoded": [
 								{
 									"key": "id",
-									"value": "68268d3bfcf01dbce038fb40",
+									"value": "682d44bad8331461d6916f3b",
 									"type": "text"
 								},
 								{
 									"key": "name",
-									"value": "Dilan ",
+									"value": "Jose",
 									"type": "text"
 								},
 								{
 									"key": "surname",
-									"value": "rodas",
+									"value": "Arrecis",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "dili",
+									"value": "cabalo",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "dilirodas@gmail.com",
+									"value": "andre.arrecis@gmail.com",
 									"type": "text"
 								},
 								{
@@ -935,6 +930,50 @@
 					"response": []
 				},
 				{
+					"name": "UPDATE ROLE",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "682e6180ae89ee0dde326349",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "ADMIN",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/user/updateRole",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"user",
+								"updateRole"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "UPDATE PASSWORD",
 					"request": {
 						"method": "PUT",
@@ -949,48 +988,19 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "id",
-									"value": "68268d42fcf01dbce038fb43",
-									"type": "text"
-								},
-								{
 									"key": "currentPassword",
-									"value": "sdjksldjsd*/5aSw",
-									"type": "text"
-								},
-								{
-									"key": "newPassword",
 									"value": "sdjksldjsd*/5aS",
 									"type": "text"
 								},
 								{
-									"key": "username",
-									"value": "dili",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "email",
-									"value": "dilirodas@gmail.com",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "phone",
-									"value": "",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "role",
-									"value": "",
-									"type": "text",
-									"disabled": true
+									"key": "newPassword",
+									"value": "Aa123456!",
+									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "localhost:3640/v1/user/updatePassword",
+							"raw": "localhost:3640/v1/user/updatePassword/682e6180ae89ee0dde326349",
 							"host": [
 								"localhost"
 							],
@@ -998,14 +1008,15 @@
 							"path": [
 								"v1",
 								"user",
-								"updatePassword"
+								"updatePassword",
+								"682e6180ae89ee0dde326349"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "UPDATE PASSWORD Copy",
+					"name": "DELETE ONE",
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -1020,8 +1031,9 @@
 							"urlencoded": [
 								{
 									"key": "userId",
-									"value": "68268d3bfcf01dbce038fb40",
-									"type": "text"
+									"value": "682e61a6ae89ee0dde32634c",
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "name",
@@ -1062,7 +1074,7 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:3640/v1/user/deleteOne",
+							"raw": "localhost:3640/v1/user/deleteOne/682e61a6ae89ee0dde32634c",
 							"host": [
 								"localhost"
 							],
@@ -1070,7 +1082,8 @@
 							"path": [
 								"v1",
 								"user",
-								"deleteOne"
+								"deleteOne",
+								"682e61a6ae89ee0dde32634c"
 							]
 						}
 					},
