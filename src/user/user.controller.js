@@ -33,21 +33,25 @@ export const getOne = async(req, res)=>{
     }
 }
 
-export const updateUser = async(req, res) =>{
+export const updateUser = async (req, res) => {
     try {
-        const userId = req.user.uid
-        const { data } = req.body
+        const { id } = req.params
+        if (!mongoose.Types.ObjectId.isValid(id)) {return res.status(400).send({success: false, message: 'Invalid user ID'})}
 
-        const userToUpdate = await User.findById(userId)
-        if(!userToUpdate) return res.status(404).send({success: false,message: 'User not found'})
+        const { name, surname, username, email } = req.body
+        const requestingUser = req.user
+        const userToUpdate = await User.findById(id)
 
-        const updateUser = await User.findByIdAndUpdate(userId, data, {new: true})
+        if (!userToUpdate) {
+            return res.status(404).send({success: false,message: 'User not found'})}
+
+        const updateUser = await User.findByIdAndUpdate(id,{ name, surname, username, email }, { new: true })
+
         return res.send({success: true,message: 'User updated',updateUser})
 
-    } catch(err){
-        console.error(err)
-        return res.status(500).send({success: false,message: 'General error', err})
-    }
+    } catch (err) {
+        console.error(err);
+        return res.status(500).send({success: false,message: 'General error',err})}
 }
 
 
