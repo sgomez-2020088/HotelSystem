@@ -1,31 +1,5 @@
 import Hotel from './hotel.model.js'
 
-/*export const addHotel = async (req, res) => {
-  try {
-    const { body, file } = req
-
-    if (!file) {
-      return res.status(400).send({ message: 'Image file is required', success: false })
-    }
-
-    const hotelData = {
-      ...body,
-      hotelImages: {
-        data: file.buffer,
-        contentType: file.mimetype
-      }
-    }
-
-    const hotel = new Hotel(hotelData)
-    await hotel.save()
-
-    return res.send({ message: 'Hotel added successfully', success: true, hotel })
-  } catch (error) {
-    console.error(error)
-    return res.status(500).send({ message: 'Error saving hotel', success: false })
-  }
-}*/
-
 export const addHotel = async (req, res) => {
   try {
         let data = req.body
@@ -41,7 +15,7 @@ export const addHotel = async (req, res) => {
 export const getAllHotels = async (req,res ) =>{
     try {
         const hotels = await Hotel.find({status: true})
-        if(!hotels.length === 0) return res.status(400).send({message: 'Hotels not found', success: false})
+        if(hotels.length === 0) return res.status(404).send({message: 'Hotels not found', success: false})
             return res.send({message: 'Hotels found', success: true, hotels})
     } catch (err) {
         console.error(err)
@@ -50,15 +24,16 @@ export const getAllHotels = async (req,res ) =>{
 }
 
 export const getHotelById = async (req, res) => {
-    try {
-        const { id } = req.params
+  try {
+      const { id } = req.params
 
-        const hotel = await Hotel.findById(id)
-        if(!hotel) return res.status(404).send({message: 'Hotel not found', success: false})
-            return res.send({message: 'Hotel found', success: true, hotel})
-        } catch (err) {
-        console.error(err)
-        return res.status(500).send({message: 'General error',err, success: false})
+      const hotel = await Hotel.findOne({ _id: id, status: true })
+      if (!hotel) return res.status(404).send({ message: 'Hotel not found', success: false })
+
+      return res.send({ message: 'Hotel found', success: true, hotel })
+    } catch (err) {
+      console.error(err)
+      return res.status(500).send({ message: 'General error', err, success: false })
     }
 }
 
