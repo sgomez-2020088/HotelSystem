@@ -7,8 +7,8 @@ const api = Router()
 api.post('/add',[validateJwt],addHotelRoom)
 api.put('/update/:id',[validateJwt], updateHotelRoom)
 api.delete('/delete/:id',[validateJwt], deleteHotelRoom)
-api.get('/find/:id', [validateJwt], getOneRoom)
-api.get('/:id/rooms', [validateJwt], getRoomsFromHotel)
+api.get('/find/:id', getOneRoom)
+api.get('/:id/rooms', getRoomsFromHotel)
 
 
 
