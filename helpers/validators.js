@@ -44,11 +44,32 @@ export const updateUserPassValidator = [
     validateErrors
 ]
 
-export const hotelValidator = [
+const allowedCategories = [
+    'Hotel',
+    'Hostal',
+    'Casa de huéspedes',
+    'HotelNegocios',
+    'HotelBoutique',
+    'ComplejoHotelero',
+    'HotelAeropuerto',
+    'HotelMontana',
+    'HotelEcologico'
+]
+
+export const addHotelValidator = [
     body('name', 'Name cannot be empty or is too long').notEmpty().isLength({max: 25}),
     body('address', 'Address cannot be empty').notEmpty(),
-    body('category', 'Category cannot be empty').notEmpty(),
+    body('category', 'Category cannot be empty or category does not match').notEmpty().isIn(allowedCategories),
     body('amenities', 'Amenities cannot be empty').notEmpty(),
+    validateErrors
+]
+
+export const updateHotelValidator = [
+    body('id', 'Id is necesary').notEmpty().isLength({max: 25}),
+    body('name', 'Name cannot be empty ').optional().notEmpty(),
+    body('address', 'Address cannot be empty').optional().notEmpty(),
+    body('category', 'Category cannot be empty or category does not match').optional().notEmpty().isIn(allowedCategories),
+    body('amenities', 'Amenities cannot be empty').optional().notEmpty(),
     validateErrors
 ]
 
@@ -83,12 +104,26 @@ export const eventsValidator = [
     validateErrors
 ]
 
-export const hotelRoomValidator = [
+const types = [
+    'single', 
+    'double', 
+    'triple', 
+    'familiar', 
+    'suite'
+]
+export const addHotelRoomValidator = [
     body('number', 'Number cannot be empty').notEmpty(),
-    body('category', 'Category cannot be empty').notEmpty(),
+    body('type', 'Category cannot be empty or type does not match').notEmpty().isIn(types),
     body('price', 'Price cannot be empty').notEmpty(),
     body('description', 'Description cannot be empty').notEmpty(),
-    body('amenities', 'Amenities cannot be empty').notEmpty(),
-    body('hotel', 'Hotel id cannot be empty').notEmpty(),
+    body('idHotel', 'Hotel id cannot be empty').notEmpty(),
+    validateErrors
+]
+
+export const updateHotelRoomValidator = [
+    body('number', 'Number cannot be empty').optional().notEmpty(),
+    body('type', 'Category cannot be empty or type does not match').optional().notEmpty().isIn(types),
+    body('price', 'Price cannot be empty').optional().notEmpty(),
+    body('description', 'Description cannot be empty').optional().notEmpty(),
     validateErrors
 ]
