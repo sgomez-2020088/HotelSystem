@@ -77,6 +77,16 @@ export const getMyReservations = async (req, res) => {
                     {status:"confirmed"}        
                 ] 
             }
+        ).populate( 
+            {
+                path: 'hotel',        
+                select: 'name _id',
+            }
+        ).populate(
+            {
+                path: 'hotelRoom',
+                select:'number type _id'
+            }
         )
         if(reservations.length === 0) return res.status(404).send({success:false,message:'You do not have reservations'})
         return res.send({success:true, message:'Reservations found', reservations})
