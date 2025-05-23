@@ -192,7 +192,7 @@ export const getRoomsFromHotel = async(req, res) => {
     
         if(!hotel) return res.status(404).send({success: false,message: 'Hotel not found'})
 
-        const rooms = await HotelRoom.find({hotel: id}).populate('hotel', 'name -_id')
+        const rooms = await HotelRoom.find({hotel: id}).populate('hotel', 'name _id')
 
         if(rooms.length === 0) return res.status(200).send({success: true, message: 'This hotel has no rooms'})
         
