@@ -82,3 +82,13 @@ export const eventsValidator = [
 
     validateErrors
 ]
+
+export const hotelRoomValidator = [
+    body('number', 'Number cannot be empty').notEmpty(),
+    body('category', 'Category cannot be empty').notEmpty(),
+    body('price', 'Price cannot be empty').notEmpty(),
+    body('description', 'Description cannot be empty').notEmpty(),
+    body('amenities', 'Amenities cannot be empty').notEmpty(),
+    body('hotel', 'Hotel id cannot be empty').notEmpty(),
+    validateErrors
+]
