@@ -9,7 +9,7 @@ api.post('/add',[validateJwt],addHotelRoom)
 api.put('/update/:id',[validateJwt], updateHotelRoom)
 api.delete('/delete/:id',[validateJwt], deleteHotelRoom)
 api.get('/find/:id', getOneRoom)
-api.get('/:id/rooms', hotelRoomValidator , getRoomsFromHotel)
+api.get('/:id/rooms' , getRoomsFromHotel)
 
 
 
