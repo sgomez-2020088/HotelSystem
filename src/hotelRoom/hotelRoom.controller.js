@@ -4,62 +4,49 @@ import Hotel from '../hotel/hotel.model.js'
 
 export const addHotelRoom = async (req, res) => {
     try {
-        const { idHotel, number, ...data} = req.body
+    const { idHotel, number, ...data } = req.body
 
-        const hotel = await Hotel.findById(idHotel)
+    const hotel = await Hotel.findById(idHotel)
 
-        if (!hotel) {
-            return res.status(500).send(
-                {
-                    success: false,
-                    message: 'Hotel not found'
-                }
-            )
-        }
+    if (!hotel || hotel.status === false) {
+        return res.status(400).send({
+        success: false,
+        message: 'Hotel not found or is inactive'
+        })
+    }
 
-        const hotelRoomNumber = await HotelRoom.findOne(
-            { 
-                number,
-                hotel: hotel._id 
-            }
-        )
+    const hotelRoomNumber = await HotelRoom.findOne({
+        number,
+        hotel: hotel._id
+    })
 
-        if(hotelRoomNumber) {
-            return res.status(400).send(
-                {
-                    success: false,
-                    message: 'Already exists a room with this number in this hotel'
-                }
-            )
-        }
+    if (hotelRoomNumber) {
+        return res.status(400).send({
+        success: false,
+        message: 'Already exists a room with this number in this hotel'
+        })
+    }
 
-        const hotelRoom = new HotelRoom(
-            {
-                ...data,
-                number: number,
-                hotel: hotel._id
-            }
-        )
+    const hotelRoom = new HotelRoom({
+        ...data,
+        number: number,
+        hotel: hotel._id
+    })
 
-        await hotelRoom.save()
+    await hotelRoom.save()
 
-        return res.send(
-            { 
-                success: true,
-                message: 'Hotel room added successfully',
-                hotelRoom
-            }
-        )
-
+    return res.send({
+        success: true,
+        message: 'Hotel room added successfully',
+        hotelRoom
+    })
     } catch (err) {
-        console.error(err)
-        return res.status(500).send(
-            { 
-                success: false ,
-                message: 'General error', 
-                err
-            }
-        )
+    console.error(err)
+    return res.status(500).send({
+        success: false,
+        message: 'General error',
+        err
+    })
     }
 }
 
@@ -72,7 +59,7 @@ export const updateHotelRoom = async (req, res) => {
             hotelRoomId,
             data,
             { new: true }
-        )
+        ).populate('hotel', 'name -_id')
 
         if (!updatedHotelRoom) {
             return res.status(404).send(
@@ -131,56 +118,46 @@ export const deleteHotelRoom = async (req, res) => {
     }
 }
 
-export const getOneRoom = async(req, res) =>{
+export const getOneRoom = async (req, res) => {
     try {
         const id = req.params.id
 
-        const room = await HotelRoom.findById(id)
+        const room = await HotelRoom.findOne({ _id: id, status: true })
 
-        if(!room) {
-            return res.status(404).send(
-                {
-                    success:false,
-                    message: 'Room not found'
-                }
-            )
+        if (!room) {
+        return res.status(404).send({
+            success: false,
+            message: 'Room not found'
+        })
         }
 
-        const hotel = await Hotel.findOne(
-            {
-                _id: room.hotel,
-                status: { $ne: false }
-            
-            }
-        )
+        const hotel = await Hotel.findOne({
+        _id: room.hotel,
+        status: true
+        })
 
         if (!hotel) {
-            return res.status(403)(
-                {
-                    success: false, 
-                    message: 'The room you are trying to access is in an invalid hotel.', 
-                }
-            )
+        return res.status(403).send({
+            success: false,
+            message: 'The room does not exist.'
+        })
         }
 
-        return res.status(200).send(
-            {
-                success: true,
-                message: 'Room found',
-                room
-            }
-        )
+        return res.status(200).send({
+        success: true,
+        message: 'Room found',
+        room
+        })
     } catch (err) {
         console.error(err)
-        return res.status(500).send(
-            {
-                message: 'General error getting Room', 
-                err, 
-                success: false
-            }
-        )
+        return res.status(500).send({
+        message: 'General error getting Room',
+        err,
+        success: false
+        })
     }
-}   
+}
+  
 
 export const getRoomsFromHotel = async(req, res) => {
     try {
