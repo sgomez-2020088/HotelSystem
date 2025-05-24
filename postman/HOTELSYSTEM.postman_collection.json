@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "43eb816b-1948-489c-b39d-d3e165ac6929",
-		"name": "HOTELSYSTEM",
+		"_postman_id": "9d27831b-a3d0-4fb3-abd4-582abb1aa2c2",
+		"name": "HOTELSYSTEM Copy 2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37951882"
+		"_exporter_id": "37951897"
 	},
 	"item": [
 		{
@@ -87,12 +87,12 @@
 							"urlencoded": [
 								{
 									"key": "password",
-									"value": "123.sd/",
+									"value": "gBk7fJ6Q#",
 									"type": "text"
 								},
 								{
 									"key": "userInformation",
-									"value": "admin",
+									"value": "arrecis@gmail.com",
 									"type": "text"
 								}
 							]
@@ -133,7 +133,7 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "Messi hotel",
+									"value": "Hilton2",
 									"type": "text"
 								},
 								{
@@ -184,20 +184,7 @@
 						],
 						"body": {
 							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "password",
-									"value": "12345678",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "userInformation",
-									"value": "jsjsjs@gmail.co",
-									"type": "text",
-									"disabled": true
-								}
-							]
+							"urlencoded": []
 						},
 						"url": {
 							"raw": "localhost:3640/v1/hotel/getAll",
@@ -233,19 +220,14 @@
 							"urlencoded": [
 								{
 									"key": "id",
-									"value": "680db8b0ab2c5787b1a1fea6",
-									"type": "text"
-								},
-								{
-									"key": "",
-									"value": "jsjsjs@gmail.co",
+									"value": "682ffae0d605fe9ed8c559d6",
 									"type": "text",
 									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "localhost:3640/v1/hotel/getOne",
+							"raw": "localhost:3640/v1/hotel/getOne/682ffab3d605fe9ed8c559d2",
 							"host": [
 								"localhost"
 							],
@@ -253,7 +235,8 @@
 							"path": [
 								"v1",
 								"hotel",
-								"getOne"
+								"getOne",
+								"682ffab3d605fe9ed8c559d2"
 							]
 						}
 					},
@@ -275,17 +258,27 @@
 							"urlencoded": [
 								{
 									"key": "id",
-									"value": "6826930bf06c287493326449",
+									"value": "682ffab3d605fe9ed8c559d2",
 									"type": "text"
 								},
 								{
 									"key": "name",
-									"value": "Hilton2",
+									"value": "papu",
 									"type": "text"
 								},
 								{
 									"key": "address",
-									"value": "",
+									"value": "Nono",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Hotel",
+									"type": "text"
+								},
+								{
+									"key": "amenities",
+									"value": "sq",
 									"type": "text"
 								}
 							]
@@ -333,7 +326,7 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:3640/v1/hotel/delete",
+							"raw": "localhost:3640/v1/hotel/delete/682ffab3d605fe9ed8c559d2",
 							"host": [
 								"localhost"
 							],
@@ -341,7 +334,227 @@
 							"path": [
 								"v1",
 								"hotel",
-								"delete"
+								"delete",
+								"682ffab3d605fe9ed8c559d2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hotel Room",
+			"item": [
+				{
+					"name": "ADD HOTELROOM",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "number",
+									"value": "404",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "suite",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "800",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Cuarto para 8 personas con 4 camas, sala, comedor etc",
+									"type": "text"
+								},
+								{
+									"key": "idHotel",
+									"value": "682ffe5020f92589f8fa318a",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/hotelRoom/add",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"hotelRoom",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE HOTEL ROOM",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "number",
+									"value": "20122",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "suite",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/hotelRoom/update/68300175f1514d4824032617",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"hotelRoom",
+								"update",
+								"68300175f1514d4824032617"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE HOTEL ROOM",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "",
+									"value": "302",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/hotelRoom/delete/68300175f1514d4824032617",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"hotelRoom",
+								"delete",
+								"68300175f1514d4824032617"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ONE HOTEL ROOM",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:3640/v1/hotelRoom/find/6830028d3ac8aefa80f410f7",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"hotelRoom",
+								"find",
+								"6830028d3ac8aefa80f410f7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET HOTEL ROOMS",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:3640/v1/hotelRoom/682ffae0d605fe9ed8c559d6/rooms",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"hotelRoom",
+								"682ffae0d605fe9ed8c559d6",
+								"rooms"
 							]
 						}
 					},
@@ -368,12 +581,12 @@
 							"urlencoded": [
 								{
 									"key": "hotel",
-									"value": "682fc96ec9c51cbfe10ffe06",
+									"value": "682ffe5020f92589f8fa318a",
 									"type": "text"
 								},
 								{
 									"key": "hotelRoom",
-									"value": "682fc97dc9c51cbfe10ffe0b",
+									"value": "683002b73ac8aefa80f41101",
 									"type": "text"
 								},
 								{
@@ -557,210 +770,6 @@
 								"v1",
 								"reservation",
 								"deleteReservation"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Hotel Room",
-			"item": [
-				{
-					"name": "ADD HOTELROOM",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "number",
-									"value": "404",
-									"type": "text"
-								},
-								{
-									"key": "type",
-									"value": "suite",
-									"type": "text"
-								},
-								{
-									"key": "price",
-									"value": "800",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "Cuarto para 8 personas con 4 camas, sala, comedor etc",
-									"type": "text"
-								},
-								{
-									"key": "idHotel",
-									"value": "682fc96ec9c51cbfe10ffe06",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3640/v1/hotelRoom/add",
-							"host": [
-								"localhost"
-							],
-							"port": "3640",
-							"path": [
-								"v1",
-								"hotelRoom",
-								"add"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "UPDATE HOTEL ROOM",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "number",
-									"value": "201",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3640/v1/hotelRoom/update/682b5b0b3eb16a64bbe40b35",
-							"host": [
-								"localhost"
-							],
-							"port": "3640",
-							"path": [
-								"v1",
-								"hotelRoom",
-								"update",
-								"682b5b0b3eb16a64bbe40b35"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DELETE HOTEL ROOM",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "",
-									"value": "302",
-									"type": "text",
-									"disabled": true
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3640/v1/hotelRoom/delete/682b5b0b3eb16a64bbe40b35",
-							"host": [
-								"localhost"
-							],
-							"port": "3640",
-							"path": [
-								"v1",
-								"hotelRoom",
-								"delete",
-								"682b5b0b3eb16a64bbe40b35"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET ONE HOTEL ROOM",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "localhost:3640/v1/hotelRoom/find/682b5b673eb16a64bbe40b39",
-							"host": [
-								"localhost"
-							],
-							"port": "3640",
-							"path": [
-								"v1",
-								"hotelRoom",
-								"find",
-								"682b5b673eb16a64bbe40b39"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET HOTEL ROOMS",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "localhost:3640/v1/hotelRoom/682b5a2900345b53a8955286/rooms",
-							"host": [
-								"localhost"
-							],
-							"port": "3640",
-							"path": [
-								"v1",
-								"hotelRoom",
-								"682b5a2900345b53a8955286",
-								"rooms"
 							]
 						}
 					},
@@ -1102,7 +1111,7 @@
 								},
 								{
 									"key": "date",
-									"value": "09/04/2025",
+									"value": "10/05/2025",
 									"type": "text"
 								},
 								{
@@ -1112,12 +1121,17 @@
 								},
 								{
 									"key": "resource",
-									"value": "La shit",
+									"value": "Sillas y mesas",
 									"type": "text"
 								},
 								{
 									"key": "extras",
-									"value": "no necesario",
+									"value": "NN",
+									"type": "text"
+								},
+								{
+									"key": "hotel",
+									"value": "6830772467bb775c3d0a79aa",
 									"type": "text"
 								},
 								{
@@ -1125,11 +1139,6 @@
 									"value": "TRUE",
 									"type": "text",
 									"disabled": true
-								},
-								{
-									"key": "hotel",
-									"value": "680d64b79dc6cad662840054",
-									"type": "text"
 								}
 							]
 						},
@@ -1174,7 +1183,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3640/v1/events/getOne/680d66605afab546ed45d30b",
+							"raw": "localhost:3640/v1/events/getOne/6830821eeddf559efd400680",
 							"host": [
 								"localhost"
 							],
@@ -1183,7 +1192,7 @@
 								"v1",
 								"events",
 								"getOne",
-								"680d66605afab546ed45d30b"
+								"6830821eeddf559efd400680"
 							],
 							"query": [
 								{
@@ -1243,6 +1252,161 @@
 								"events",
 								"delete",
 								"680d66605afab546ed45d30b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bill",
+			"item": [
+				{
+					"name": "ADD BILL",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "reservationId",
+									"value": "6830783667bb775c3d0a79fe",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "suite",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "price",
+									"value": "800",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "Cuatyo para 8 personas con 4 camas, sala, comedor etc",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "hotelId",
+									"value": "682b40b27c05797388c1a8fe",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/bill/add",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"bill",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL BIILS",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userID",
+									"value": "6830767367bb775c3d0a799d",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "userInformation",
+									"value": "jsjsjs@gmail.co",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/bill/getMyBills",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"bill",
+								"getMyBills"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET USER BILL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "userInformation",
+									"value": "jsjsjs@gmail.co",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3640/v1/bill/getAll",
+							"host": [
+								"localhost"
+							],
+							"port": "3640",
+							"path": [
+								"v1",
+								"bill",
+								"getAll"
 							]
 						}
 					},
