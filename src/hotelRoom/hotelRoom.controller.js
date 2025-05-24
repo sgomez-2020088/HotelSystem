@@ -165,7 +165,6 @@ export const getRoomsFromHotel = async(req, res) => {
         console.log(id);
         
         const hotel = await Hotel.findById(id)
-        
     
         if(!hotel) return res.status(404).send({success: false,message: 'Hotel not found'})
 
@@ -173,7 +172,6 @@ export const getRoomsFromHotel = async(req, res) => {
 
         if(rooms.length === 0) return res.status(200).send({success: true, message: 'This hotel has no rooms'})
         
-
         return res.status(200).send({success: true,message: 'Rooms found',rooms})
 
     } catch (err) {
