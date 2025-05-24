@@ -25,7 +25,7 @@ const eventsSchema = Schema({
     },
     status: {
         type: Boolean,
-        required: true
+        default: true
     },
     hotel: {
         type: mongoose.Schema.Types.ObjectId,
